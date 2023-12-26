@@ -13,4 +13,5 @@ v1.add_url_rule(sample_subapp_prefix + '/getUserName', view_func=sample_subapp_v
 token_prefix = '/token'
 v1.add_url_rule(sample_subapp_prefix + '/', view_func=sample_subapp_views.Index.as_view('index'))
 v1.add_url_rule(sample_subapp_prefix + '/install', view_func=sample_subapp_views.Install.as_view('install'))
-v1.add_url_rule(sample_subapp_prefix + '/apiCallback', view_func=sample_subapp_views.OauthCallback.as_view('api_callback'))
+v1.add_url_rule(sample_subapp_prefix + '/api/callback', view_func=sample_subapp_views.OauthCallback.as_view('api_callback'))
+

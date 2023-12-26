@@ -24,21 +24,20 @@ class SubApp1Service:
     def oauth_callback(self):
         code = request.args.get('code')
         shop = request.args.get('shop')
-        token_url = 'https://{}/admin/oauth/access_token'.format(shop)
+        token_url = Config.APP_TOKEN_URL.format(shop=shop)
         data = {
             'client_id': Config.APP_API_KEY,
             'client_secret': Config.APP_API_SECRET,
             'code': code
         }
-        print('Authorization Code:',code)
+        print('Authorization Code:{}'.format(code))
         response = requests.post(token_url, data=data)
         if response.ok:
             access_token = response.json().get('access_token')
-            print("access token : ",access_token)
+            print('access token: {}'.format(access_token))
             self.store_access_token_in_db(shop, access_token)
-            return 'Token obtained and authorized: {}'.format(access_token)
+            return redirect('https://{}/admin/products'.format(shop))
         else:
             return 'Error getting access token: {}'.format(response.text), 500 
     def store_access_token_in_db(self, shop, data):
-        self.coordinator = DatabaseCoordinator()
-        return self.coordinator.add_token_db(shop, data)
+        return self.Coordinator.add_token_db(shop, data)

@@ -15,3 +15,4 @@ def validate_request(func):
         return func(params=params, headers=headers, *args, **kwargs)
 
     return decorated_function
+

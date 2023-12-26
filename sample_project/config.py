@@ -18,6 +18,3 @@ class Config:
     APP_REDIRECT_URL = 'http://127.0.0.1:5000/api/callback'
     APP_AUTH_BASE_URL = 'https://quickstart-ee5cbf78.myshopify.com/admin/oauth/authorize'
     APP_TOKEN_URL = 'https://quickstart-ee5cbf78.myshopify.com/admin/oauth/access_token'
-
-    TABLE_NAME = 'access_tokens'
-    COLUMN_NAMES = 'id,token,created_at,updated_at'.split(',')
