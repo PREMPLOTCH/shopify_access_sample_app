@@ -2,7 +2,7 @@ from app.v1.users.coordinator import ShopifyCoordinator
 from flask import request, redirect
 import requests
 from config import Config
-class SubApp1Service:
+class ShopifyAccessTokenService:
 
     def __init__(self,params,headers):
         self.params= params
