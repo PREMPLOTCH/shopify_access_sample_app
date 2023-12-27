@@ -18,7 +18,5 @@ class InstallApp(MethodView):
 class AuthorizeApp(MethodView):
     @validate_request
     def get(self, params, headers, *args, **kwargs):
-        code = request.args.get('code')
-        shop = request.args.get('shop')
         response = ShopifyAccessTokenService(params, headers).authorize_app_after_install()
         return response
