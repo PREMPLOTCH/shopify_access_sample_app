@@ -1,37 +1,27 @@
 from flask.views import MethodView
 from app.decorators import validate_request
-from app.common_utils import render_success_response
 from app.v1.users.service import SubApp1Service
 from flask import request
 
-
-class GetUserName(MethodView):
-
-    @validate_request
-    def get(self, params, headers, *args, **kwargs):
-        response, message = SubApp1Service(params, headers).get_static_api_response()
-        return render_success_response(response, message)
-
-class Index(MethodView):
+class AppIndex(MethodView):
 
     @validate_request
     def get(self, params, headers, *args, **kwargs):
-        response = SubApp1Service(params, headers).index()
+        response = SubApp1Service(params, headers).app_index()
         return response
 
-class Install(MethodView):
+class InstallApp(MethodView):
     
     @validate_request
     def get(self, params, headers, *args, **kwargs):
-        response = SubApp1Service(params, headers).install()
-        return response
-    
+        response = SubApp1Service(params, headers).install_app()
+        return response    
 
-class OauthCallback(MethodView):
+class AuthorizeApp(MethodView):
 
     @validate_request
     def get(self, params, headers, *args, **kwargs):
         code = request.args.get('code')
         shop = request.args.get('shop')
-        response = SubApp1Service(params, headers).oauth_callback()
+        response = SubApp1Service(params, headers).authorize_app_after_install()
         return response
