@@ -24,8 +24,7 @@ class ShopifyAccessTokenService:
         data = {
             'client_id': Config.APP_API_PUBLIC_KEY,
             'client_secret': Config.APP_API_SECRET_KEY,
-            'code': code
-        }
+            'code': code}
         response = requests.post(token_url, data=data)
         if response.ok:
             access_token = response.json().get('access_token')
